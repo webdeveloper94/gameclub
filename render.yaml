@@ -1,9 +1,13 @@
 services:
   - type: web
     name: my-web-app
-    env: node
-    buildCommand: "npm install"
-    startCommand: "npm start"
+    env: php
+    buildCommand: |
+      composer install
+      npm install
+      npm run prod
+    startCommand: |
+      php artisan serve --host 0.0.0.0 --port 80
     plan: free
     branches:
       - main
