@@ -1,31 +1,25 @@
-version: '3.8'
-
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: laravel-app
-    container_name: laravel-app
+    build: .
+    container_name: app
     ports:
-      - "8000:80"
+      - "9000:9000"
     volumes:
       - .:/var/www/html
-    depends_on:
-      - mysql
+    networks:
+      - mynetwork
 
-  mysql:
-    image: mysql:5.7
-    container_name: mysql
+  nginx:
+    image: nginx:latest
+    container_name: nginx
     ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: game
-      MYSQL_USER: root
-      MYSQL_PASSWORD:
+      - "80:80"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - .:/var/www/html
+    networks:
+      - mynetwork
 
-volumes:
-  mysql_data:
+networks:
+  mynetwork:
+    driver: bridge
