@@ -28,7 +28,7 @@
             text-align: center;
             width: 100%;
             max-width: 400px;
-            color: white;
+            color: black;
             position: relative;
         }
 
@@ -84,12 +84,12 @@
             @csrf
             
             <div>
-                <input id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="E-mail manzilingiz">
+                <input id="email" type="email" name="email" style="color: black;" :value="old('email')" required autofocus autocomplete="username" placeholder="E-mail manzilingiz">
                 <x-input-error :messages="$errors->get('email')" class="mt-2 text-red-400" />
             </div>
 
             <div>
-                <input id="password" type="password" name="password" required autocomplete="current-password" placeholder="Parolingiz">
+                <input id="password" type="password" name="password" style="color: black;" required autocomplete="current-password" placeholder="Parolingiz">
                 <x-input-error :messages="$errors->get('password')" class="mt-2 text-red-400" />
             </div>
 
